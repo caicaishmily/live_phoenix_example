@@ -17,6 +17,9 @@ config :live_phoenix_example, LivePhoenixExampleWeb.Endpoint,
   render_errors: [view: LivePhoenixExampleWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: LivePhoenixExample.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :phoenix,
+  template_engines: [leex: Phoenix.LiveView.Engine]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
