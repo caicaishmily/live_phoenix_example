@@ -1,8 +1,6 @@
 defmodule LivePhoenixExampleWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :live_phoenix_example
 
-  pubsub: [name: LivePhoenixExample.PubSub, adapter: Phoenix.PubSub.PG2]
-
   socket "/socket", LivePhoenixExampleWeb.UserSocket,
     websocket: true,
     longpoll: false
@@ -46,9 +44,5 @@ defmodule LivePhoenixExampleWeb.Endpoint do
     signing_salt: "BxKU2nDt"
 
   plug LivePhoenixExampleWeb.Router
-
-  live_view: [
-    signing_salt: "8Y/M50wMhcSze2UfP9T5WjA7Z2Mf4d+7NsFbbqGvIzwQ02HElePbl8SjXjx1zuF4"
-  ]
 
 end
