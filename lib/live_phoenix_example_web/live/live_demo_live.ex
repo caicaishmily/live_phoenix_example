@@ -10,6 +10,7 @@ defmodule LivePhoenixExampleWeb.LiveDemoLive do
   end
 
   def handle_event("test", _, socket) do
-    IO.inspect "+++++++++++++"
+    # TODO
+    {:noreply, assign(socket, %{})}
   end
 end
