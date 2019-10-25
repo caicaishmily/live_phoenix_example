@@ -13,18 +13,22 @@ defmodule LivePhoenixExampleWeb.LiveDemoLive do
 
   def mount(_session, socket) do
     LivePhoenixExampleWeb.Endpoint.subscribe(@topic)
-
     {:ok, assign(socket, image_list: get_image_list())}
   end
 
-  def handle_event("test", %{"id" => id}, socket) do
+  def handle_event("like", %{"id" => id}, socket) do
     with {:ok, _girl} <- update_like(id) do
-      LivePhoenixExampleWeb.Endpoint.broadcast_from(self(), @topic, step, state)
-      {:noreply, assign(socket, image_list: get_image_list())}
+      image_list = get_image_list()
+      LivePhoenixExampleWeb.Endpoint.broadcast_from(self(), @topic, "like", %{image_list: image_list})
+      {:noreply, assign(socket, image_list: image_list)}
     else
       {:error, error} ->
         {:noreply, assign(socket, %{error: error})}
     end
+  end
+
+  def handle_info(%{event: "like", payload: state}, socket) do
+    {:noreply, assign(socket, state)}
   end
 
   defp update_like(id) do

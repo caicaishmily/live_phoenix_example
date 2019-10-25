@@ -5,7 +5,7 @@
         <img src="<%= item.avatar %>" alt="piaoxinhui"/>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span><%= item.name %></span>
-          <button phx-click="test" phx-value-id="<%= item.id %>">Like <span><%= item.like %></span></button>
+          <button phx-click="like" phx-value-id="<%= item.id %>">Like <span><%= item.like %></span></button>
         </div>
       </li>
     <% end %>
